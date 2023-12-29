@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { subDays, subHours } from "date-fns";
-import { Box, Container, Unstable_Grid2 as Grid } from "@mui/material";
+import { Box, Card, CardContent, Container, Unstable_Grid2 as Grid } from "@mui/material";
 import { TextField, IconButton, Paper, InputAdornment, SvgIcon} from '@mui/material';
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import PaperAirplaneIcon from '@heroicons/react/24/solid/PaperAirplaneIcon';
@@ -8,6 +8,7 @@ import PaperAirplaneIcon from '@heroicons/react/24/solid/PaperAirplaneIcon';
 
 import React, { useState } from 'react';
 import { blue, red } from "@mui/material/colors";
+import { borderBottom } from "@mui/system";
 
 const now = new Date();
 
@@ -36,16 +37,20 @@ const ChatInterface = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
-      <Container maxWidth="xl">
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} lg={12}>
-            <Paper style={{ maxHeight: 400, overflow: 'auto' }}>
-              {messages.map((message, index) => (
-                <Box key={index} p={2} bgcolor={message.sender === 'bot' ? '#f5f5f5' : '#e3f2fd'}>
-                  {message.text}
-                </Box>
-              ))}
-            </Paper>
+    <Container maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#dae9ff3f', borderRadius: '16px' }}>
+      <Box sx={{ overflow: 'auto', flexGrow: 1 }}>
+        <Paper style={{ maxHeight: 400 }}>
+          {messages.map((message, index) => (
+            <Box key={index} p={2} bgcolor={message.sender === 'bot' ? '#ffffff' : '#dae9ff3f'}>
+              {message.text}
+            </Box>
+          ))}
+        </Paper>
+      </Box>
+  
+      <Box sx={{ mt: 'auto', width: '100%' }}>
+        <Card>
+          <CardContent sx={{ backgroundColor: '#dae9ff3f' }}>
             <TextField
               fullWidth
               placeholder="Type your message here..."
@@ -54,25 +59,25 @@ const ChatInterface = () => {
               value={currentMessage}
               onChange={(e) => setCurrentMessage(e.target.value)}
               onKeyDown={handleKeyDown}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton 
-                      onClick={handleSendMessage}
-                    >
+                    <IconButton onClick={handleSendMessage}>
                       <SvgIcon>
-                         <PaperAirplaneIcon />
+                        <PaperAirplaneIcon />
                       </SvgIcon>
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
             />
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    </Container>
+  </Box>
+  
+
   );
 };
 
