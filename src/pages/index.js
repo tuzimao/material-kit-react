@@ -38,7 +38,7 @@ const ChatInterface = () => {
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
     <Container maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#dae9ff3f', borderRadius: '16px' }}>
-      <Box sx={{ overflow: 'auto', flexGrow: 1 }}>
+      <Box sx={{ overflow: 'auto', flexGrow: 1,width: '90%', margin:'auto', }}>
         <Paper style={{ maxHeight: 400 }}>
           {messages.map((message, index) => (
             <Box key={index} p={2} bgcolor={message.sender === 'bot' ? '#ffffff' : '#dae9ff3f'}>
@@ -48,7 +48,7 @@ const ChatInterface = () => {
         </Paper>
       </Box>
   
-      <Box sx={{ mt: 'auto', width: '100%' }}>
+      <Box sx={{ mt: 'auto', width: '90%', margin:'auto',marginBottom: '20px' }}>
         <Card>
           <CardContent sx={{ backgroundColor: '#dae9ff3f' }}>
             <TextField
