@@ -1,9 +1,10 @@
 import Head from "next/head";
 import { subDays, subHours } from "date-fns";
 import { Box, Card, CardContent, Container, Unstable_Grid2 as Grid } from "@mui/material";
-import { TextField, IconButton, Paper, InputAdornment, SvgIcon} from '@mui/material';
+import { TextField, IconButton, Paper, InputAdornment, SvgIcon, Avatar,Button} from '@mui/material';
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import PaperAirplaneIcon from '@heroicons/react/24/solid/PaperAirplaneIcon';
+import PencilSquareIcon from '@heroicons/react/24/solid/PencilSquareIcon';
 
 
 import React, { useState } from 'react';
@@ -37,7 +38,24 @@ const ChatInterface = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
-    <Container maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#dae9ff3f', borderRadius: '16px' }}>
+      <Container maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#dae9ff3f', borderRadius: '16px' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 3, borderRadius: '16px 16px 0 0', width: '90%', margin: 'auto' }}>
+        {/* 头像居中的容器 */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1 }}>
+          <Avatar src="/assets/avatars/avatar-anika-visser.png" alt="User" />
+          <Box sx={{ mx: 0.3 }}> {/* 增加水平间距 */}
+          </Box>
+          <Avatar src="/assets/avatars/avatar-marcus-finn.png" alt="AI" />
+        </Box>
+
+        {/* 功能图标按钮 */}
+        <IconButton onClick={handleSendMessage}>
+          <SvgIcon>
+            <PencilSquareIcon />
+          </SvgIcon>
+        </IconButton>
+      </Box>
+
       <Box sx={{ overflow: 'auto', flexGrow: 1, width: '90%', margin: 'auto', marginBottom:'5px', '&::-webkit-scrollbar': { width: '5px', height: '5px' }, '&::-webkit-scrollbar-thumb': { backgroundColor: 'grey', borderRadius: '10px' }, '&::-webkit-scrollbar-track': { backgroundColor: '#dae9ff3f', borderRadius: '10px' } }}>
         <Container style={{ maxHeight: 400 }}>
           {messages.map((message, index) => (
