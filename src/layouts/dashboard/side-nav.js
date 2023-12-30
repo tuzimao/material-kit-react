@@ -55,7 +55,7 @@ export const SideNav = (props) => {
             <Logo />
           </Box>
         </Box>
-        <Divider sx={{ borderColor: "neutral.700" }} />
+       {/* <Divider sx={{ borderColor: "neutral.700" }} /> */}
         <Box
           component="nav"
           sx={{

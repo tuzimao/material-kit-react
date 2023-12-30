@@ -38,17 +38,23 @@ const ChatInterface = () => {
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
     <Container maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#dae9ff3f', borderRadius: '16px' }}>
-      <Box sx={{ overflow: 'auto', flexGrow: 1,width: '90%', margin:'auto', }}>
-        <Paper style={{ maxHeight: 400 }}>
+      <Box sx={{ overflow: 'auto', flexGrow: 1, width: '90%', margin: 'auto', marginBottom:'5px', '&::-webkit-scrollbar': { width: '5px', height: '5px' }, '&::-webkit-scrollbar-thumb': { backgroundColor: 'grey', borderRadius: '10px' }, '&::-webkit-scrollbar-track': { backgroundColor: '#dae9ff3f', borderRadius: '10px' } }}>
+        <Container style={{ maxHeight: 400 }}>
           {messages.map((message, index) => (
-            <Box key={index} p={2} bgcolor={message.sender === 'bot' ? '#ffffff' : '#dae9ff3f'}>
-              {message.text}
-            </Box>
+            message.sender === 'bot' ?
+              <Card key={index} sx={{ my: 2, backgroundColor: '#ffffff' }}>
+                <CardContent>
+                  {message.text}
+                </CardContent>
+              </Card> :
+              <Box key={index} p={2} sx={{  my: 2 }}>
+                {message.text}
+              </Box>
           ))}
-        </Paper>
+        </Container>
       </Box>
   
-      <Box sx={{ mt: 'auto', width: '90%', margin:'auto',marginBottom: '20px' }}>
+      <Box sx={{ mt: 'auto', width: '90%', margin:'auto',marginBottom: '20px'}}>
         <Card>
           <CardContent sx={{ backgroundColor: '#dae9ff3f' }}>
             <TextField
