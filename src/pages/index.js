@@ -1,10 +1,12 @@
 import Head from "next/head";
 import { subDays, subHours } from "date-fns";
 import { Box, Card, CardContent, Container, Unstable_Grid2 as Grid } from "@mui/material";
-import { TextField, IconButton, Paper, InputAdornment, SvgIcon, Avatar,Button} from '@mui/material';
+import { TextField, IconButton, Paper, InputAdornment, SvgIcon, Avatar,Button,Popover} from '@mui/material';
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import PaperAirplaneIcon from '@heroicons/react/24/solid/PaperAirplaneIcon';
 import PencilSquareIcon from '@heroicons/react/24/solid/PencilSquareIcon';
+
+import { usePopover } from "src/hooks/use-popover";
 
 
 import React, { useState } from 'react';
@@ -16,6 +18,7 @@ const now = new Date();
 const ChatInterface = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
+  const { anchorRef, open, handleOpen, handleClose } = usePopover();
 
   const handleSendMessage = () => {
     if (currentMessage.trim()) {
@@ -49,11 +52,31 @@ const ChatInterface = () => {
         </Box>
 
         {/* 功能图标按钮 */}
-        <IconButton onClick={handleSendMessage}>
-          <SvgIcon>
-            <PencilSquareIcon />
-          </SvgIcon>
-        </IconButton>
+        <IconButton onClick={handleOpen} ref={anchorRef}>
+        <SvgIcon>
+          <PencilSquareIcon />
+        </SvgIcon>
+      </IconButton>
+
+      {/* 弹出菜单 */}
+      <Popover
+        open={open}
+        anchorEl={anchorRef.current}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Button onClick={() => {/* 处理重置聊天逻辑 */}}>Reset Chat</Button>
+          <Button onClick={() => {/* 处理保存逻辑 */}}>Save Chat</Button>
+        </Box>
+      </Popover>
       </Box>
 
       <Box sx={{ overflow: 'auto', flexGrow: 1, width: '90%', margin: 'auto', marginBottom:'5px', '&::-webkit-scrollbar': { width: '5px', height: '5px' }, '&::-webkit-scrollbar-thumb': { backgroundColor: 'grey', borderRadius: '10px' }, '&::-webkit-scrollbar-track': { backgroundColor: '#dae9ff3f', borderRadius: '10px' } }}>
