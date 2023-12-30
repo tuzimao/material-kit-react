@@ -1,10 +1,12 @@
 import Head from "next/head";
 import { subDays, subHours } from "date-fns";
 import { Box, Card, CardContent, Container, Unstable_Grid2 as Grid } from "@mui/material";
-import { TextField, IconButton, Paper, InputAdornment, SvgIcon, Avatar,Button,Popover} from '@mui/material';
+import { TextField, IconButton, Paper, InputAdornment, SvgIcon, Avatar,Button,Popover, CardActions} from '@mui/material';
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import PaperAirplaneIcon from '@heroicons/react/24/solid/PaperAirplaneIcon';
 import PencilSquareIcon from '@heroicons/react/24/solid/PencilSquareIcon';
+import HandThumbUp from '@heroicons/react/20/solid/HandThumbUpIcon';
+import ArrowPathIcon from "@heroicons/react/20/solid/ArrowPathIcon";
 
 import { usePopover } from "src/hooks/use-popover";
 
@@ -52,9 +54,9 @@ const ChatInterface = () => {
         </Box>
 
         {/* 功能图标按钮 */}
-        <IconButton onClick={handleOpen} ref={anchorRef}>
-        <SvgIcon>
-          <PencilSquareIcon />
+        <IconButton onClick={handleOpen} ref={anchorRef} sx={{ '&:hover': { color: "#4338CA" } }} >
+        <SvgIcon >
+          <PencilSquareIcon  />
         </SvgIcon>
       </IconButton>
 
@@ -87,6 +89,18 @@ const ChatInterface = () => {
                 <CardContent>
                   {message.text}
                 </CardContent>
+                <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <IconButton onClick={() => {/* 处理点赞逻辑 */}} size="mini"sx={{ '&:hover': { color: "#4338CA" } }} >
+                    <SvgIcon>
+                      <HandThumbUp />
+                    </SvgIcon>
+                  </IconButton>
+                  <IconButton onClick={() => {/* 处理重新生成聊天逻辑 */}} size="mini"sx={{ '&:hover': { color: "#4338CA" } }}>
+                    <SvgIcon>
+                      <ArrowPathIcon />
+                    </SvgIcon>
+                  </IconButton>
+                </CardActions>
               </Card> :
               <Box key={index} p={2} sx={{  my: 2 }}>
                 {message.text}
@@ -109,7 +123,7 @@ const ChatInterface = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={handleSendMessage}>
+                    <IconButton onClick={handleSendMessage} sx={{ '&:hover': { color: "#4338CA" } }}>
                       <SvgIcon>
                         <PaperAirplaneIcon />
                       </SvgIcon>
