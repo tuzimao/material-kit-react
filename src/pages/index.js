@@ -54,7 +54,7 @@ const ChatInterface = () => {
         </Box>
 
         {/* 功能图标按钮 */}
-        <IconButton onClick={handleOpen} ref={anchorRef} sx={{ '&:hover': { color: "#4338CA" } }} >
+        <IconButton onClick={handleOpen} ref={anchorRef} sx={{ '&:hover': { color: "#6366F1" } }} >
         <SvgIcon >
           <PencilSquareIcon  />
         </SvgIcon>
@@ -90,12 +90,12 @@ const ChatInterface = () => {
                   {message.text}
                 </CardContent>
                 <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <IconButton onClick={() => {/* 处理点赞逻辑 */}} size="mini"sx={{ '&:hover': { color: "#4338CA" } }} >
+                  <IconButton onClick={() => {/* 处理点赞逻辑 */}} size="mini"sx={{ '&:hover': { color: "#6366F1" } }} >
                     <SvgIcon>
                       <HandThumbUp />
                     </SvgIcon>
                   </IconButton>
-                  <IconButton onClick={() => {/* 处理重新生成聊天逻辑 */}} size="mini"sx={{ '&:hover': { color: "#4338CA" } }}>
+                  <IconButton onClick={() => {/* 处理重新生成聊天逻辑 */}} size="mini"sx={{ '&:hover': { color: "#6366F1" } }}>
                     <SvgIcon>
                       <ArrowPathIcon />
                     </SvgIcon>
@@ -123,7 +123,7 @@ const ChatInterface = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={handleSendMessage} sx={{ '&:hover': { color: "#4338CA" } }}>
+                    <IconButton onClick={handleSendMessage} sx={{ '&:hover': { color: "#6366F1" } }}>
                       <SvgIcon>
                         <PaperAirplaneIcon />
                       </SvgIcon>
